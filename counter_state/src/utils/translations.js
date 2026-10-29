@@ -1,0 +1,77 @@
+/**
+ * @file translations.js
+ * @description Multi-language dictionary for English and Persian support.
+ */
+
+export const translations = {
+  en: {
+    brandSubtitle: "Small steps. Big progress.",
+    footerText: "Better habits. A brighter you.",
+    nav: {
+      all: "All",
+      counter: "Counter",
+      game: "Game",
+    },
+    counter: {
+      title: "Counter",
+      subtitle: "Set a starting value and count your steps.",
+      currentCount: "CURRENT COUNT",
+      disabledMsg: "Disabled while game is active",
+      increase: "Increase",
+      decrease: "Decrease",
+      reset: "Reset",
+      settings: "Settings",
+      startingValue: "Starting Value",
+      setValue: "Set Value",
+      increaseBy: "Increase by",
+      decreaseBy: "Decrease by",
+    },
+    game: {
+      title: "Game",
+      subtitle: "Catch the green zone and earn points!",
+      timeLeft: "Time left",
+      instruction: "Move the indicator to the green zone and press Select.",
+      start: "Start",
+      stop: "Stop",
+      select: "Select",
+      score: "Score",
+      selections: "Selections",
+      segmentsInfo: "40 segments | Range: -10 to +10",
+    },
+  },
+  fa: {
+    brandSubtitle: "قدم‌های کوچک. پیشرفت بزرگ.",
+    footerText: "عادت‌های بهتر. آینده‌ای روشن‌تر.",
+    nav: {
+      all: "همه",
+      counter: "شمارنده",
+      game: "بازی",
+    },
+    counter: {
+      title: "شمارنده",
+      subtitle: "یک مقدار اولیه تعیین کنید و قدم‌هایتان را بشمارید.",
+      currentCount: "مقدار فعلی",
+      disabledMsg: "هنگام فعال بودن بازی غیرفعال است",
+      increase: "افزایش",
+      decrease: "کاهش",
+      reset: "بازنشانی",
+      settings: "تنظیمات",
+      startingValue: "مقدار اولیه",
+      setValue: "تنظیم مقدار",
+      increaseBy: "گام افزایش",
+      decreaseBy: "گام کاهش",
+    },
+    game: {
+      title: "بازی",
+      subtitle: "منطقه سبز را بگیرید و امتیاز کسب کنید!",
+      timeLeft: "زمان باقی‌مانده",
+      instruction: "نشانگر را به منطقه سبز ببرید و دکمه انتخاب را فشار دهید.",
+      start: "شروع",
+      stop: "توقف",
+      select: "انتخاب",
+      score: "امتیاز",
+      selections: "تعداد انتخاب",
+      segmentsInfo: "۴۰ بخش | دامنه: -۱۰ تا +۱۰",
+    },
+  },
+};
