@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from "react";
-import { LanguageProvider } from "./context/LanguageContext";
+import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { useCounter } from "./hooks/useCounter";
 import { useGame } from "./hooks/useGame";
 import { Navbar } from "./components/Navbar";
@@ -19,6 +19,8 @@ function AppContent() {
 
   // Game Hook logic (passes game running state)
   const gameProps = useGame();
+
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-[#070913] text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
@@ -57,7 +59,7 @@ function AppContent() {
 
       {/* Footer */}
       <footer className="py-6 text-center text-xs text-slate-500 border-t border-slate-900">
-        Better habits. A brighter you.
+        {t.footerText}
       </footer>
     </div>
   );
