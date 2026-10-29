@@ -8,11 +8,15 @@ import { useLanguage } from "../context/LanguageContext";
 
 export const GameCard = ({
   gamePosition,
+  step, // برای موقعیت‌یابی دقیق در UI
   score,
   selections,
   timeLeft,
   isGameRunning,
+  isPaused,
+  lastEarnedPoints,
   startGame,
+  togglePause,
   stopGame,
   handleSelect,
 }) => {
@@ -27,9 +31,9 @@ export const GameCard = ({
 
   // Calculate CSS percentage for gauge indicator position (-10 to +10 mapped to 0% to 100%)
   const getIndicatorPositionPercent = () => {
-    const min = -10;
-    const max = 10;
-    const percentage = ((gamePosition - min) / (max - min)) * 100;
+    const min = 0;
+    const max = 40;
+    const percentage = ((step - min) / (max - min)) * 100;
     return Math.max(0, Math.min(100, percentage));
   };
 
@@ -86,17 +90,17 @@ export const GameCard = ({
             </div>
           </div>
 
-          <span className="text-xs text-slate-500 mt-2 block">
+          {/* <span className="text-xs text-slate-500 mt-2 block">
             {t.game.segmentsInfo}
-          </span>
+          </span> */}
         </div>
 
         {/* Game Control Buttons */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-3 gap-3 mb-8">
           {!isGameRunning ? (
             <button
               onClick={startGame}
-              className="py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-2xl font-bold shadow-lg shadow-cyan-500/20 transition-all col-span-2"
+              className="py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-2xl font-bold shadow-lg shadow-cyan-500/20 transition-all col-span-3"
             >
               ▶ {t.game.start}
             </button>
@@ -104,19 +108,35 @@ export const GameCard = ({
             <>
               <button
                 onClick={stopGame}
-                className="py-4 bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 text-red-400 rounded-2xl font-bold transition-all"
+                className="py-4 bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 text-red-400 rounded-2xl font-bold transition-all text-xs"
               >
                 ⏹ {t.game.stop}
               </button>
               <button
+                onClick={togglePause}
+                className="py-4 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 text-amber-400 rounded-2xl font-bold transition-all text-xs"
+              >
+                ⏸ {isPaused ? t.game.resume : t.game.pause}
+              </button>
+              <button
                 onClick={handleSelect}
-                className="py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-2xl font-bold shadow-lg shadow-cyan-500/20 transition-all"
+                disabled={isPaused}
+                className="py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-50 text-white rounded-2xl font-bold shadow-lg shadow-cyan-500/20 transition-all text-xs"
               >
                 🎯 {t.game.select}
               </button>
             </>
           )}
         </div>
+
+        {/* Feedback for Last Selection */}
+        {lastEarnedPoints !== null && lastEarnedPoints !== 0 && (
+          <div className="text-center mb-4 animate-bounce">
+            <span className="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-400 rounded-full text-xs font-semibold">
+              ✨ {lastEarnedPoints} {t.game.earned}!
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Footer Game Stats */}
